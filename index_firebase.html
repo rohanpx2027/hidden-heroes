@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hidden Heroes: The Invisible Backbone — IIM Calcutta</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5F0E8;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --gold: #C9A84C;
+  --gold-light: #E8D5A3;
+  --iim-blue: #003366;
+  --iim-blue-light: #1a4d8f;
+  --card-bg: #ffffff;
+  --border: rgba(0,0,0,0.08);
+  --like-red: #e0245e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ─── PAGE 1: HERO ─── */
+#page1 {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--iim-blue);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.12) 0%, transparent 70%),
+    linear-gradient(160deg, #001f3f 0%, #003366 40%, #0a2d5e 100%);
+  z-index: 0;
+}
+
+/* Grain overlay */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.4s;
+}
+
+.hero-subtitle-line {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.9rem);
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.6s;
+}
+
+.hero-desc {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 1px;
+  margin-bottom: 3.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+/* ─── CIRCLE PHOTO RING ─── */
+.circle-ring {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  margin: 0 auto 3rem;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 0.9s;
+}
+
+.ring-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.15), rgba(0,51,102,0.6));
+  border: 1.5px solid var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+}
+
+.ring-center-emoji { font-size: 2rem; margin-bottom: 4px; }
+.ring-center-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.orbit-photo {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.orbit-photo:hover {
+  transform: scale(1.12) !important;
+  border-color: var(--gold);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 2px var(--gold);
+  z-index: 20;
+}
+
+.orbit-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder photo styles */
+.photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+}
+
+.photo-placeholder .ph-emoji { font-size: 2rem; }
+.photo-placeholder .ph-label {
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 0 6px;
+}
+
+/* Place 5 photos evenly around a circle */
+.orbit-photo:nth-child(2) { top: 4%; left: 50%; transform: translateX(-50%); }
+.orbit-photo:nth-child(3) { top: 29%; right: 2%; transform: none; }
+.orbit-photo:nth-child(4) { bottom: 4%; right: 18%; transform: none; }
+.orbit-photo:nth-child(5) { bottom: 4%; left: 18%; transform: none; }
+.orbit-photo:nth-child(6) { top: 29%; left: 2%; transform: none; }
+
+.hero-group-info {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 1.1s;
+}
+
+.hero-group-info strong { color: var(--gold-light); font-weight: 500; }
+
+.scroll-cue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 1.5s;
+  cursor: pointer;
+}
+
+.scroll-cue span {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+.scroll-arrow {
+  width: 20px; height: 20px;
+  border-right: 1.5px solid rgba(255,255,255,0.3);
+  border-bottom: 1.5px solid rgba(255,255,255,0.3);
+  transform: rotate(45deg);
+  animation: bounce 1.6s ease infinite;
+}
+
+/* ─── PAGE 2: FEED ─── */
+#page2 {
+  min-height: 100vh;
+  background: #F2EDE4;
+  padding: 0;
+}
+
+.page2-header {
+  background: var(--iim-blue);
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+
+.page2-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.page2-logo span { color: var(--gold); font-style: italic; }
+
+.page2-tagline {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.feed-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.feed-col {
+  padding: 2rem 1.5rem;
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+
+.feed-col:last-child { border-right: none; }
+
+.col-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid var(--iim-blue);
+}
+
+.col-header-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+
+.col-header-icon.heroes { background: linear-gradient(135deg, var(--iim-blue), var(--iim-blue-light)); }
+.col-header-icon.team { background: linear-gradient(135deg, #8B4513, #C4783C); }
+
+.col-header-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--iim-blue);
+}
+
+.col-header-text p {
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+/* ─── POST CARD (Instagram-style) ─── */
+.post-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07), 0 4px 20px rgba(0,0,0,0.04);
+  border: 0.5px solid var(--border);
+  transition: box-shadow 0.2s ease;
+}
+
+.post-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+
+/* Card header */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.card-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, var(--gold), #e8c060) border-box;
+}
+
+.avatar-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #1a4d8f15, #003366aa);
+}
+
+.avatar-inner.team-av { background: linear-gradient(135deg, #8B451315, #C4783Caa); }
+
+.card-meta { flex: 1; }
+.card-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.card-role {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.card-more {
+  background: none; border: none;
+  font-size: 1.2rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+.card-more:hover { background: #f0f0f0; }
+
+/* Card photo */
+.card-photo {
+  width: 100%;
+  aspect-ratio: 4/3;
+  position: relative;
+  overflow: hidden;
+  background: #d0ccc4;
+}
+
+.card-photo-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.post-card:hover .card-photo-img { transform: scale(1.02); }
+
+/* Photo placeholder */
+.photo-ph {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #e8e2d8, #d4cdc0);
+  color: var(--muted);
+}
+
+.photo-ph .ph-big { font-size: 3.5rem; }
+.photo-ph .ph-info {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #999;
+}
+.photo-ph .ph-path {
+  font-size: 0.65rem;
+  color: #aaa;
+  font-family: monospace;
+  background: rgba(0,0,0,0.06);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Gradient overlay on photos */
+.card-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+  pointer-events: none;
+}
+
+/* Card actions (Instagram-style) */
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px 6px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.action-btn:hover { background: rgba(0,0,0,0.05); transform: scale(1.1); }
+.action-btn.liked { animation: heartPop 0.3s ease; }
+
+.share-btn { margin-left: auto; }
+
+.like-count {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 0 4px 0 2px;
+  line-height: 1;
+}
+
+/* Card body text */
+.card-body {
+  padding: 2px 14px 10px;
+}
+
+.card-caption {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.card-caption strong {
+  color: var(--ink);
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.card-caption .excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-caption .excerpt.expanded { -webkit-line-clamp: unset; }
+
+.read-more {
+  background: none; border: none;
+  font-size: 0.78rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 2px;
+  display: block;
+}
+
+.card-time {
+  font-size: 0.65rem;
+  color: #bbb;
+  letter-spacing: 0.5px;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+/* Comments section */
+.comments-section {
+  border-top: 0.5px solid #f0f0f0;
+  padding: 10px 14px 4px;
+}
+
+.comment-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  animation: fadeUp 0.25s ease;
+}
+
+.comment-av {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0d8cc, #c8c0b4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  flex-shrink: 0;
+  color: #666;
+}
+
+.comment-bubble {
+  background: #f5f5f5;
+  border-radius: 14px;
+  padding: 6px 12px;
+  flex: 1;
+}
+
+.comment-author {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 1px;
+}
+
+.comment-text {
+  font-size: 0.78rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+.view-comments-btn {
+  background: none; border: none;
+  font-size: 0.75rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0 0 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.comment-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0 10px;
+  border-top: 0.5px solid #f0f0f0;
+  margin-top: 4px;
+}
+
+.comment-input-row .my-av {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--iim-blue), var(--iim-blue-light));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem;
+  color: #fff;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.comment-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  background: none;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.comment-input::placeholder { color: #bbb; }
+
+.comment-post-btn {
+  background: none; border: none;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--iim-blue);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+
+.comment-post-btn.active { opacity: 1; }
+
+/* Divider */
+.feed-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+  margin: 0.5rem 0 1.5rem;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes bounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50%       { transform: rotate(45deg) translateY(6px); }
+}
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--iim-blue);
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+}
+footer strong { color: var(--gold); font-weight: 400; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .feed-wrapper { grid-template-columns: 1fr; }
+  .feed-col { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .circle-ring { width: 300px; height: 300px; }
+  .orbit-photo { width: 80px; height: 80px; }
+  .ring-center { width: 100px; height: 100px; }
+  .ring-center-emoji { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ PAGE 1 ═══ -->
+<section id="page1">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">IIM Calcutta · Managerial Communication · Group 12</p>
+
+    <h1 class="hero-title">Hidden Heroes:<br>The Invisible Backbone</h1>
+    <p class="hero-subtitle-line">A Strategic Communication Intervention on Humanising the Campus</p>
+    <p class="hero-desc">Group 12 &nbsp;·&nbsp; MBAEx 56–60/20</p>
+
+    <!-- CIRCLE PHOTO RING -->
+    <div class="circle-ring">
+      <!-- Center -->
+      <div class="ring-center">
+        <div class="ring-center-emoji">🏛️</div>
+        <div class="ring-center-label">IIM<br>Calcutta</div>
+      </div>
+
+      <!-- 5 orbit photos — replace src with real image paths e.g. src="photos/gate.jpg" -->
+      <div class="orbit-photo" title="The Gate Guardian">
+        <div class="photo-placeholder" style="background:linear-gradient(135deg,#0a2d5e,#1a4d8f)">
+          <span class="ph-emoji">🔐</span>
+          <span class="ph-label">Security<br>Guard</span>
+        </div>
+        <!-- <img src="photos/hero1.jpg" alt="Security Guard"> -->
+      </div>
+
+      <div class="orbit-photo" title="The Mess Cook">
+        <div class="photo-placeholder" style="background:linear-gradient(135deg,#2d1a0a,#8B4513)">
+          <span class="ph-emoji">👨‍🍳</span>
+          <span class="ph-label">Mess<br>Cook</span>
+        </div>
+        <!-- <img src="photos/hero2.jpg" alt="Mess Cook"> -->
+      </div>
+
+      <div class="orbit-photo" title="The Groundskeeper">
+        <div class="photo-placeholder" style="background:linear-gradient(135deg,#0a2d1a,#1a6b3a)">
+          <span class="ph-emoji">🌿</span>
+          <span class="ph-label">Grounds<br>Keeper</span>
+        </div>
+        <!-- <img src="photos/hero3.jpg" alt="Groundskeeper"> -->
+      </div>
+
+      <div class="orbit-photo" title="The Cleaning Staff">
+        <div class="photo-placeholder" style="background:linear-gradient(135deg,#2d1a2d,#6b1a8f)">
+          <span class="ph-emoji">🧹</span>
+          <span class="ph-label">Cleaning<br>Staff</span>
+        </div>
+        <!-- <img src="photos/hero4.jpg" alt="Cleaning Staff"> -->
+      </div>
+
+      <div class="orbit-photo" title="The Electrician">
+        <div class="photo-placeholder" style="background:linear-gradient(135deg,#2d2a0a,#8f7a1a)">
+          <span class="ph-emoji">⚡</span>
+          <span class="ph-label">Campus<br>Electrician</span>
+        </div>
+        <!-- <img src="photos/hero5.jpg" alt="Electrician"> -->
+      </div>
+    </div>
+
+    <p class="hero-group-info">
+      <strong>Rajarshi Duttagupta</strong> &nbsp;·&nbsp; <strong>Rohan Pandey</strong> &nbsp;·&nbsp;
+      <strong>Rounak Sikder</strong> &nbsp;·&nbsp; <strong>Sachin Kumar</strong> &nbsp;·&nbsp; <strong>Rahul Sadhwani</strong>
+    </p>
+  </div>
+
+  <div class="scroll-cue" onclick="document.getElementById('page2').scrollIntoView({behavior:'smooth'})">
+    <span>Explore their stories</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ PAGE 2 ═══ -->
+<section id="page2">
+
+  <div class="page2-header">
+    <div class="page2-logo">Hidden <span>Heroes</span></div>
+    <div class="page2-tagline">IIM Calcutta · Group 12</div>
+  </div>
+
+  <div class="feed-wrapper">
+
+    <!-- ── LEFT COL: HIDDEN HEROES ── -->
+    <div class="feed-col">
+      <div class="col-header">
+        <div class="col-header-icon heroes">🦸</div>
+        <div class="col-header-text">
+          <h2>Hidden Heroes</h2>
+          <p>Interview snippets from campus staff</p>
+        </div>
+      </div>
+      <div class="feed-divider"></div>
+
+      <!-- HERO 1 -->
+      <div class="post-card reveal" id="card-h1">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner">🔐</div></div>
+          <div class="card-meta">
+            <div class="card-name">Ramesh Kumar</div>
+            <div class="card-role">Security Guard · Main Gate · 11 years</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+
+        <div class="card-photo">
+          <!-- Replace with: <img src="photos/ramesh.jpg" class="card-photo-img" alt="Ramesh Kumar"> -->
+          <div class="photo-ph">
+            <div class="ph-big">🔐</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/ramesh.jpg</div>
+          </div>
+        </div>
+
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="h1" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-h1">24</span>
+          <button class="action-btn comment-btn" data-id="h1" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Ramesh Kumar</strong>
+            <span class="excerpt" id="ex-h1">"Students don't know my name — but I know all of them. I can tell when someone had a bad exam just by the way they walk through the gate. Eleven years here. This campus is my family." Ramesh arrives at 4:45 AM every morning, long before the campus stirs. His role goes beyond checking IDs — he's a quiet sentinel, a first point of contact for lost visitors, and, in his own words, the person who "sets the mood" of the day.</span>
+          </div>
+          <button class="read-more" data-id="h1">more</button>
+          <div class="card-time">Interviewed · May 2025</div>
+        </div>
+
+        <div class="comments-section" id="cs-h1">
+          <button class="view-comments-btn" data-id="h1">View all 3 comments</button>
+          <div class="comments-list" id="cl-h1" style="display:none">
+            <div class="comment-item">
+              <div class="comment-av">RD</div>
+              <div class="comment-bubble"><div class="comment-author">Rajarshi D.</div><div class="comment-text">What a powerful perspective. Never thought about it this way.</div></div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-av">RP</div>
+              <div class="comment-bubble"><div class="comment-author">Rohan P.</div><div class="comment-text">The 4:45 AM detail really hit me. Incredible dedication.</div></div>
+            </div>
+          </div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="h1">
+            <button class="comment-post-btn" data-id="h1">Post</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO 2 -->
+      <div class="post-card reveal" id="card-h2">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner">👨‍🍳</div></div>
+          <div class="card-meta">
+            <div class="card-name">Laxmi Devi</div>
+            <div class="card-role">Head Mess Cook · Student Mess · 8 years</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+        <div class="card-photo">
+          <div class="photo-ph">
+            <div class="ph-big">👨‍🍳</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/laxmi.jpg</div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="h2" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-h2">41</span>
+          <button class="action-btn comment-btn" data-id="h2" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Laxmi Devi</strong>
+            <span class="excerpt" id="ex-h2">"I wake up at 4 AM. By 5:30, the dal is on the fire. I think of each student as my own child — I want them to eat well so they can study well." Laxmi has cooked over 2 million meals at IIMC. She knows which students skip breakfast and quietly sets aside extra portions for them.</span>
+          </div>
+          <button class="read-more" data-id="h2">more</button>
+          <div class="card-time">Interviewed · May 2025</div>
+        </div>
+        <div class="comments-section" id="cs-h2">
+          <button class="view-comments-btn" data-id="h2">View all 5 comments</button>
+          <div class="comments-list" id="cl-h2" style="display:none">
+            <div class="comment-item">
+              <div class="comment-av">RS</div>
+              <div class="comment-bubble"><div class="comment-author">Rounak S.</div><div class="comment-text">This is the most heartwarming story I've heard in a long time.</div></div>
+            </div>
+          </div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="h2">
+            <button class="comment-post-btn" data-id="h2">Post</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO 3 -->
+      <div class="post-card reveal" id="card-h3">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner">🌿</div></div>
+          <div class="card-meta">
+            <div class="card-name">Gopal Das</div>
+            <div class="card-role">Grounds Keeper · Campus Gardens · 15 years</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+        <div class="card-photo">
+          <div class="photo-ph">
+            <div class="ph-big">🌿</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/gopal.jpg</div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="h3" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-h3">18</span>
+          <button class="action-btn comment-btn" data-id="h3" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Gopal Das</strong>
+            <span class="excerpt" id="ex-h3">"The lawns you sit on for your outdoor classes — I planted those trees fifteen years ago. When I see students sitting under them, I feel proud. That is my contribution to IIMC." Gopal maintains over 40 acres of campus greenery entirely by hand, with a team of three.</span>
+          </div>
+          <button class="read-more" data-id="h3">more</button>
+          <div class="card-time">Interviewed · May 2025</div>
+        </div>
+        <div class="comments-section" id="cs-h3">
+          <button class="view-comments-btn" data-id="h3">View all 2 comments</button>
+          <div class="comments-list" id="cl-h3" style="display:none"></div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="h3">
+            <button class="comment-post-btn" data-id="h3">Post</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO 4 -->
+      <div class="post-card reveal" id="card-h4">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner">🧹</div></div>
+          <div class="card-meta">
+            <div class="card-name">Sunita Mahato</div>
+            <div class="card-role">Housekeeping Staff · Academic Block · 6 years</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+        <div class="card-photo">
+          <div class="photo-ph">
+            <div class="ph-big">🧹</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/sunita.jpg</div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="h4" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-h4">29</span>
+          <button class="action-btn comment-btn" data-id="h4" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Sunita Mahato</strong>
+            <span class="excerpt" id="ex-h4">"I am first in and last out. The classrooms are empty when I come, and empty again when I leave. But in between — those rooms are full of something important. I am happy to be part of that, even if no one sees me." Sunita cleans 12 classrooms every morning before 7 AM.</span>
+          </div>
+          <button class="read-more" data-id="h4">more</button>
+          <div class="card-time">Interviewed · May 2025</div>
+        </div>
+        <div class="comments-section" id="cs-h4">
+          <button class="view-comments-btn" data-id="h4">View all 4 comments</button>
+          <div class="comments-list" id="cl-h4" style="display:none"></div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="h4">
+            <button class="comment-post-btn" data-id="h4">Post</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO 5 -->
+      <div class="post-card reveal" id="card-h5">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner">⚡</div></div>
+          <div class="card-meta">
+            <div class="card-name">Bijoy Halder</div>
+            <div class="card-role">Campus Electrician · Maintenance · 20 years</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+        <div class="card-photo">
+          <div class="photo-ph">
+            <div class="ph-big">⚡</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/bijoy.jpg</div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="h5" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-h5">33</span>
+          <button class="action-btn comment-btn" data-id="h5" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Bijoy Halder</strong>
+            <span class="excerpt" id="ex-h5">"Twenty years I have kept the lights on. During exams, I make sure every lab, every library corner is fully powered — all night if needed. Students never think about electricity until it is gone. I make sure it never goes." Bijoy has responded to over 800 maintenance calls across two decades.</span>
+          </div>
+          <button class="read-more" data-id="h5">more</button>
+          <div class="card-time">Interviewed · May 2025</div>
+        </div>
+        <div class="comments-section" id="cs-h5">
+          <button class="view-comments-btn" data-id="h5">View all 1 comment</button>
+          <div class="comments-list" id="cl-h5" style="display:none"></div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="h5">
+            <button class="comment-post-btn" data-id="h5">Post</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /left col -->
+
+    <!-- ── RIGHT COL: GROUP OBSERVATIONS ── -->
+    <div class="feed-col">
+      <div class="col-header">
+        <div class="col-header-icon team">📝</div>
+        <div class="col-header-text">
+          <h2>Our Observations</h2>
+          <p>Personal excerpts from Group 12 members</p>
+        </div>
+      </div>
+      <div class="feed-divider"></div>
+
+      <!-- MEMBER 1 -->
+      <div class="post-card reveal" id="card-m1">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner team-av">RD</div></div>
+          <div class="card-meta">
+            <div class="card-name">Rajarshi Duttagupta</div>
+            <div class="card-role">MBAEx56/20 · Group Lead</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+        <div class="card-photo">
+          <div class="photo-ph" style="background:linear-gradient(135deg,#e8ddd0,#d4c8b8)">
+            <div class="ph-big">🎓</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/rajarshi.jpg</div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="m1" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-m1">17</span>
+          <button class="action-btn comment-btn" data-id="m1" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Rajarshi Duttagupta</strong>
+            <span class="excerpt" id="ex-m1">When I first approached Ramesh at the gate to request an interview, he looked surprised — almost suspicious. "Why would anyone want to know my story?" That question stayed with me throughout this project. We are trained as managers to focus on strategy, structure, systems. But this assignment forced me to confront what we so often ignore: the human infrastructure beneath every institution.</span>
+          </div>
+          <button class="read-more" data-id="m1">more</button>
+          <div class="card-time">Personal reflection · May 2025</div>
+        </div>
+        <div class="comments-section" id="cs-m1">
+          <button class="view-comments-btn" data-id="m1">View all 2 comments</button>
+          <div class="comments-list" id="cl-m1" style="display:none">
+            <div class="comment-item">
+              <div class="comment-av">SK</div>
+              <div class="comment-bubble"><div class="comment-author">Sachin K.</div><div class="comment-text">Really resonates with me too. Great framing.</div></div>
+            </div>
+          </div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="m1">
+            <button class="comment-post-btn" data-id="m1">Post</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEMBER 2 -->
+      <div class="post-card reveal" id="card-m2">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner team-av">RP</div></div>
+          <div class="card-meta">
+            <div class="card-name">Rohan Pandey</div>
+            <div class="card-role">MBAEx57/20</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+        <div class="card-photo">
+          <div class="photo-ph" style="background:linear-gradient(135deg,#dde8d0,#c8d4b8)">
+            <div class="ph-big">🌱</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/rohan.jpg</div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="m2" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-m2">22</span>
+          <button class="action-btn comment-btn" data-id="m2" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Rohan Pandey</strong>
+            <span class="excerpt" id="ex-m2">I spent a morning with Gopal in the gardens. He showed me a mango tree he planted on his first week here. It now gives shade to an entire stretch of the walkway near Dorms C and D. "I will retire before this tree does," he said and laughed. There is a kind of permanence in his work that most corporate careers will never achieve. It was humbling.</span>
+          </div>
+          <button class="read-more" data-id="m2">more</button>
+          <div class="card-time">Personal reflection · May 2025</div>
+        </div>
+        <div class="comments-section" id="cs-m2">
+          <button class="view-comments-btn" data-id="m2">View all 3 comments</button>
+          <div class="comments-list" id="cl-m2" style="display:none"></div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="m2">
+            <button class="comment-post-btn" data-id="m2">Post</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEMBER 3 -->
+      <div class="post-card reveal" id="card-m3">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner team-av">RS</div></div>
+          <div class="card-meta">
+            <div class="card-name">Rounak Sikder</div>
+            <div class="card-role">MBAEx58/20</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+        <div class="card-photo">
+          <div class="photo-ph" style="background:linear-gradient(135deg,#d0dde8,#b8c8d4)">
+            <div class="ph-big">🏙️</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/rounak.jpg</div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="m3" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-m3">19</span>
+          <button class="action-btn comment-btn" data-id="m3" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Rounak Sikder</strong>
+            <span class="excerpt" id="ex-m3">Laxmi didi's kitchen operates like a masterclass in operations management — FIFO inventory, zero-waste philosophy, peak-demand planning, all without an MBA. When I asked her how she manages it, she shrugged: "Experience. You just know." That tacit knowledge, built over 8 years, is irreplaceable — and completely undocumented. A lesson for every manager.</span>
+          </div>
+          <button class="read-more" data-id="m3">more</button>
+          <div class="card-time">Personal reflection · May 2025</div>
+        </div>
+        <div class="comments-section" id="cs-m3">
+          <button class="view-comments-btn" data-id="m3">View all 2 comments</button>
+          <div class="comments-list" id="cl-m3" style="display:none"></div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="m3">
+            <button class="comment-post-btn" data-id="m3">Post</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEMBER 4 -->
+      <div class="post-card reveal" id="card-m4">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner team-av">SK</div></div>
+          <div class="card-meta">
+            <div class="card-name">Sachin Kumar</div>
+            <div class="card-role">MBAEx59/20</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+        <div class="card-photo">
+          <div class="photo-ph" style="background:linear-gradient(135deg,#e8d0d0,#d4b8b8)">
+            <div class="ph-big">💡</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/sachin.jpg</div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="m4" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-m4">28</span>
+          <button class="action-btn comment-btn" data-id="m4" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Sachin Kumar</strong>
+            <span class="excerpt" id="ex-m4">Bijoy bhaiya showed me the electrical panel room that sits right beneath the main auditorium. Hundreds of circuits, all labelled in his handwriting. "No one else knows this map," he said. I realised then that entire systems depend on the memory of single individuals — and what a fragile, extraordinary thing that is. This is not just a people story. It is a risk management story too.</span>
+          </div>
+          <button class="read-more" data-id="m4">more</button>
+          <div class="card-time">Personal reflection · May 2025</div>
+        </div>
+        <div class="comments-section" id="cs-m4">
+          <button class="view-comments-btn" data-id="m4">View all 4 comments</button>
+          <div class="comments-list" id="cl-m4" style="display:none"></div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="m4">
+            <button class="comment-post-btn" data-id="m4">Post</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEMBER 5 -->
+      <div class="post-card reveal" id="card-m5">
+        <div class="card-header">
+          <div class="card-avatar"><div class="avatar-inner team-av">RH</div></div>
+          <div class="card-meta">
+            <div class="card-name">Rahul Sadhwani</div>
+            <div class="card-role">MBAEx60/20</div>
+          </div>
+          <button class="card-more">···</button>
+        </div>
+        <div class="card-photo">
+          <div class="photo-ph" style="background:linear-gradient(135deg,#e8e0d0,#d4ccb8)">
+            <div class="ph-big">🤝</div>
+            <div class="ph-info">Replace with photo</div>
+            <div class="ph-path">photos/rahul.jpg</div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn like-btn" data-id="m5" aria-label="Like">❤️</button>
+          <span class="like-count" id="lc-m5">31</span>
+          <button class="action-btn comment-btn" data-id="m5" aria-label="Comment">💬</button>
+          <button class="action-btn share-btn" aria-label="Share">🔗</button>
+        </div>
+        <div class="card-body">
+          <div class="card-caption">
+            <strong>Rahul Sadhwani</strong>
+            <span class="excerpt" id="ex-m5">What moved me most was Sunita's dignity. She works in invisibility by design — early hours, quiet corridors — and has made peace with it. But the moment I sat down with her and asked her story, something in her face changed. She sat straighter. She spoke longer. Being seen, it turns out, is a profound human need. As future managers, we would do well to remember that.</span>
+          </div>
+          <button class="read-more" data-id="m5">more</button>
+          <div class="card-time">Personal reflection · May 2025</div>
+        </div>
+        <div class="comments-section" id="cs-m5">
+          <button class="view-comments-btn" data-id="m5">View all 6 comments</button>
+          <div class="comments-list" id="cl-m5" style="display:none">
+            <div class="comment-item">
+              <div class="comment-av">RD</div>
+              <div class="comment-bubble"><div class="comment-author">Rajarshi D.</div><div class="comment-text">This is the heart of the whole project. Beautiful writing.</div></div>
+            </div>
+          </div>
+          <div class="comment-input-row">
+            <div class="my-av">You</div>
+            <input class="comment-input" type="text" placeholder="Add a comment…" data-id="m5">
+            <button class="comment-post-btn" data-id="m5">Post</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /right col -->
+  </div><!-- /feed-wrapper -->
+
+  <footer>
+    <p><strong>Hidden Heroes: The Invisible Backbone</strong> &nbsp;·&nbsp; IIM Calcutta &nbsp;·&nbsp; Group 12 &nbsp;·&nbsp; Managerial Communication</p>
+    <p style="margin-top:6px">Rajarshi Duttagupta &nbsp;·&nbsp; Rohan Pandey &nbsp;·&nbsp; Rounak Sikder &nbsp;·&nbsp; Sachin Kumar &nbsp;·&nbsp; Rahul Sadhwani</p>
+  </footer>
+
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FIREBASE REAL-TIME DATABASE
+     ─────────────────────────────────────────────────────────────
+     STEP 1: Go to https://console.firebase.google.com
+     STEP 2: Create project → "hidden-heroes-iimc" → Continue
+     STEP 3: Click "Realtime Database" (left sidebar) → Create Database
+             → Start in TEST MODE → Enable
+     STEP 4: Click Project Settings (gear icon) → Your apps → Web (</>)
+             → Register app → copy the firebaseConfig object below
+     STEP 5: Replace the placeholder values in FIREBASE_CONFIG below
+             with your actual values from that config object
+     STEP 6: In Firebase Console → Realtime Database → Rules → Publish:
+     {
+       "rules": {
+         ".read": true,
+         ".write": true
+       }
+     }
+     ══════════════════════════════════════════════════════════════ -->
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, push, onValue, runTransaction }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+// ── PASTE YOUR FIREBASE CONFIG HERE ─────────────────────────────
+const FIREBASE_CONFIG = {
+  apiKey:            "AIzaSyC3qYIzftf9RDV1iFzGUpR-MZZP3joG78M",
+  authDomain: "hidden-heores-iimc.firebaseapp.com",
+  databaseURL: "https://hidden-heores-iimc-default-rtdb.firebaseio.com",
+  projectId: "hidden-heores-iimc",
+  storageBucket: "hidden-heores-iimc.firebasestorage.app",
+  messagingSenderId: "1004706737406",
+  appId: "1:1004706737406:web:a57dcf082686152759c9af"
+};
+// ────────────────────────────────────────────────────────────────
+
+const app = initializeApp(FIREBASE_CONFIG);
+const db  = getDatabase(app);
+
+// All card IDs in the portal
+const CARD_IDS = ['h1','h2','h3','h4','h5','m1','m2','m3','m4','m5'];
+
+// Per-browser visitor ID so one person can't like twice
+function getVisitorId() {
+  let id = localStorage.getItem('hh_visitor_id');
+  if (!id) { id = 'v_' + Math.random().toString(36).slice(2,10); localStorage.setItem('hh_visitor_id', id); }
+  return id;
+}
+const ME = getVisitorId();
+
+// ── NAME PROMPT ──────────────────────────────────────────────────
+// Ask visitor their name once, store it locally
+function getVisitorName() {
+  let name = localStorage.getItem('hh_visitor_name');
+  if (!name) {
+    name = prompt('Welcome! What is your name? (shown on your comments)') || 'Anonymous';
+    localStorage.setItem('hh_visitor_name', name.trim() || 'Anonymous');
+  }
+  return localStorage.getItem('hh_visitor_name');
+}
+
+// ── HELPER: render a comment item into a list ────────────────────
+function renderComment(list, data) {
+  const div = document.createElement('div');
+  div.className = 'comment-item';
+  const initials = (data.author || 'A').split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+  const ts = data.timestamp ? new Date(data.timestamp).toLocaleDateString('en-IN',{day:'numeric',month:'short'}) : '';
+  div.innerHTML = `
+    <div class="comment-av">${initials}</div>
+    <div class="comment-bubble">
+      <div class="comment-author">${data.author || 'Anonymous'} <span style="font-weight:400;color:#bbb;font-size:0.68rem;margin-left:4px">${ts}</span></div>
+      <div class="comment-text">${data.text}</div>
+    </div>`;
+  list.appendChild(div);
+}
+
+// ── WIRE UP EACH CARD ────────────────────────────────────────────
+CARD_IDS.forEach(id => {
+  const likeBtn   = document.querySelector(`.like-btn[data-id="${id}"]`);
+  const likeCount = document.getElementById('lc-' + id);
+  const commentList = document.getElementById('cl-' + id);
+  const viewBtn   = document.querySelector(`.view-comments-btn[data-id="${id}"]`);
+  const input     = document.querySelector(`.comment-input[data-id="${id}"]`);
+  const postBtn   = document.querySelector(`.comment-post-btn[data-id="${id}"]`);
+
+  const likesRef    = ref(db, `cards/${id}/likes`);
+  const likedByRef  = ref(db, `cards/${id}/likedBy/${ME}`);
+  const commentsRef = ref(db, `cards/${id}/comments`);
+
+  // ── LIKES: listen in real-time ──────────────────────────────
+  onValue(likesRef, snap => {
+    likeCount.textContent = snap.val() || 0;
+  });
+
+  // Check if this visitor already liked
+  get(likedByRef).then(snap => {
+    if (snap.val()) {
+      likeBtn.textContent = '❤️';
+      likeBtn.dataset.liked = 'true';
+    }
+  });
+
+  likeBtn.addEventListener('click', async () => {
+    const alreadyLiked = likeBtn.dataset.liked === 'true';
+    // Atomic increment/decrement
+    await runTransaction(ref(db, `cards/${id}/likes`), current => (current || 0) + (alreadyLiked ? -1 : 1));
+    if (alreadyLiked) {
+      await set(likedByRef, null);
+      likeBtn.dataset.liked = 'false';
+      likeBtn.textContent = '🤍';
+    } else {
+      await set(likedByRef, true);
+      likeBtn.dataset.liked = 'true';
+      likeBtn.textContent = '❤️';
+    }
+    likeBtn.style.transform = 'scale(1.3)';
+    setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+  });
+
+  // ── COMMENTS: listen in real-time ──────────────────────────
+  onValue(commentsRef, snap => {
+    commentList.innerHTML = '';
+    const data = snap.val();
+    const count = data ? Object.keys(data).length : 0;
+    if (data) Object.values(data).sort((a,b) => a.timestamp - b.timestamp).forEach(c => renderComment(commentList, c));
+    if (viewBtn) viewBtn.textContent = count > 0 ? `${count} comment${count>1?'s':''}` : 'No comments yet';
+  });
+
+  // Show/hide comments
+  if (viewBtn) {
+    viewBtn.addEventListener('click', () => {
+      const showing = commentList.style.display === 'block';
+      commentList.style.display = showing ? 'none' : 'block';
+    });
+  }
+
+  // Comment button (speech bubble icon)
+  const commentIconBtn = document.querySelector(`.comment-btn[data-id="${id}"]`);
+  if (commentIconBtn) {
+    commentIconBtn.addEventListener('click', () => {
+      commentList.style.display = commentList.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+
+  // Activate post button when input has text
+  if (input) {
+    input.addEventListener('input', () => {
+      postBtn.classList.toggle('active', input.value.trim().length > 0);
+    });
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') doPost(); });
+  }
+
+  if (postBtn) postBtn.addEventListener('click', doPost);
+
+  async function doPost() {
+    const text = input.value.trim();
+    if (!text) return;
+    const name = getVisitorName();
+    await push(commentsRef, { author: name, text, timestamp: Date.now(), visitorId: ME });
+    input.value = '';
+    postBtn.classList.remove('active');
+    commentList.style.display = 'block';
+  }
+});
+
+// ── READ MORE ────────────────────────────────────────────────────
+document.querySelectorAll('.read-more').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const ex = document.getElementById('ex-' + this.dataset.id);
+    const expanded = ex.classList.toggle('expanded');
+    this.textContent = expanded ? 'less' : 'more';
+  });
+});
+
+// ── SCROLL REVEAL ────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+</script>
+</body>
+</html>
