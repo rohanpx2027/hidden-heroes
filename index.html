@@ -6,14 +6,6 @@
 <title>Hidden Heroes: The Invisible Backbone — IIM Calcutta</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-.card-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  transition: transform 0.4s ease;
-}
   
 :root {
   --cream: #F5F0E8;
@@ -400,23 +392,36 @@ body {
 .card-more:hover { background: #f0f0f0; }
 
 /* Card photo */
+/* Card photo CONTAINER — controls the box size */
 .card-photo {
   width: 100%;
-  height: 500px;
-  /* aspect-ratio: 4/3; */
+  aspect-ratio: 4/5;        /* ← 4:5 portrait ratio, like Instagram */
   position: relative;
   overflow: hidden;
   background: #d0ccc4;
+  border-radius: 12px;
+  /* remove height: 500px — aspect-ratio replaces it */
 }
 
-.card-photo-img {
-  width: 100%; height: 100%;
+/* Any image inside the card photo box */
+.card-photo img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center top;   /* keeps faces in frame */
   display: block;
   transition: transform 0.4s ease;
 }
 
-.post-card:hover .card-photo-img { transform: scale(1.02); }
+/* .card-photo-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+} */
+
+.post-card:hover .card-photo img { transform: scale(1.02); }
+/* .post-card:hover .card-photo-img { transform: scale(1.02); } */
 
 /* Photo placeholder */
 .photo-ph {
@@ -808,7 +813,7 @@ footer strong { color: var(--gold); font-weight: 400; }
         <div class="card-header">
           <div class="card-avatar"><div class="avatar-inner">📚</div></div>
           <div class="card-meta">
-            <div class="card-name">Sujit Malakar aka Babu Bhaiya</div>
+            <div class="card-name">Sujit Malakar aka Babu Da</div>
             <div class="card-role">Office Staff · Academic Block</div>
           </div>
           <button class="card-more">···</button>
