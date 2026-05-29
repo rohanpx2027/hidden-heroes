@@ -21,30 +21,39 @@
   position: relative;
 }
 
-.open-quote, .close-quote {
-  font-family: 'Playfair Display', serif;   /* already loaded in your file */
-  font-size: 8rem;
-  line-height: 0.5;
-  color: var(--gold);
-  opacity: 0.4;
-  user-select: none;
-}
-
-.close-quote {
-  display: block;
-  text-align: right;
-  margin-top: 1rem;
-}
-
 .team-msg-text {
-  font-family: 'DM Serif Display', serif;   /* already loaded — italic calligraphy feel */
+  font-family: 'DM Serif Display', serif;
   font-style: italic;
   font-size: clamp(1.05rem, 2vw, 1.35rem);
   line-height: 2;
   color: rgba(255, 255, 255, 0.88);
   letter-spacing: 0.3px;
   margin: 0.5rem 0;
+  position: relative;
 }
+
+.team-msg-text::before {
+  content: '"';
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.5;
+  vertical-align: top;
+  line-height: 0;
+  margin-right: 0.15em;
+}
+
+.team-msg-text::after {
+  content: '"';
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.5;
+  vertical-align: bottom;
+  line-height: 0;
+  margin-left: 0.1em;
+}
+
 
 .team-msg-sig {
   font-family: 'DM Sans', sans-serif;
@@ -844,10 +853,9 @@ footer strong { color: var(--gold); font-weight: 400; }
 <!-- ═══════════════ TEAM MESSAGE SECTION ═══════════════ -->
 <section id="team-message">
   <div class="team-msg-inner">
-    <div class="open-quote">
+    <!-- <div class="open-quote">"</div> -->
     <p class="team-msg-text">
-      "</div>To the one who chose to pause and read,
-
+      To the one who chose to pause and read,
 Ambition, deadlines, and relentless academic pressure mark the  IIM Calcutta journey. 
 Yet, quietly alongside this high-performance race runs an often-overlooked ecosystem—the dedicated guards, housekeeping teams, mess staff, admin office members, and local vendors who keep campus life moving seamlessly behind the curtains.
 The campaign “Hidden Heroes: The Invisible Backbone” is a humble effort to bridge the quiet emotional distance between tomorrow's corporate leaders and the very people who hold up their daily routines.
@@ -856,7 +864,7 @@ We have tried to tell their stories to foster deeper and impactful conversations
 The objective is not sympathy. It is recognition via digital storytelling. 
 Hope you have a good time while reading this as much as we had making this. 
     </p>
-    <div class="close-quote">"</div>
+    <!-- <div class="close-quote">"</div> -->
     <div class="team-msg-sig">— Group 12, IIM Calcutta</div>
   </div>
 </section>
