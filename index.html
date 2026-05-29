@@ -6,6 +6,59 @@
 <title>Hidden Heroes: The Invisible Backbone — IIM Calcutta</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
+/* ─── TEAM MESSAGE SECTION ─── */
+#team-message {
+  background: var(--iim-blue);      /* matches page 1 dark blue */
+  padding: 6rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.team-msg-inner {
+  max-width: 780px;
+  position: relative;
+}
+
+.open-quote, .close-quote {
+  font-family: 'Playfair Display', serif;   /* already loaded in your file */
+  font-size: 8rem;
+  line-height: 0.5;
+  color: var(--gold);
+  opacity: 0.4;
+  user-select: none;
+}
+
+.close-quote {
+  display: block;
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.team-msg-text {
+  font-family: 'DM Serif Display', serif;   /* already loaded — italic calligraphy feel */
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 2;
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: 0.3px;
+  margin: 0.5rem 0;
+}
+
+.team-msg-sig {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 2.5rem;
+}
+  
+  .card-caption {
+    text-align: justify;
+}
   
 :root {
   --cream: #F5F0E8;
@@ -787,7 +840,26 @@ footer strong { color: var(--gold); font-weight: 400; }
     <div class="scroll-arrow"></div>
   </div>
 </section>
+  
+<!-- ═══════════════ TEAM MESSAGE SECTION ═══════════════ -->
+<section id="team-message">
+  <div class="team-msg-inner">
+    <div class="open-quote">"</div>
+    <p class="team-msg-text">
+      To the one who chose to pause and read,
 
+Ambition, deadlines, and relentless academic pressure mark the  IIM Calcutta journey. 
+Yet, quietly alongside this high-performance race runs an often-overlooked ecosystem—the dedicated guards, housekeeping teams, mess staff, admin office members, and local vendors who keep campus life moving seamlessly behind the curtains.
+The campaign “Hidden Heroes: The Invisible Backbone” is a humble effort to bridge the quiet emotional distance between tomorrow's corporate leaders and the very people who hold up their daily routines.
+The ultimate heartbeat of this intervention is to fundamentally shift how we see the people around us—moving them from functional "service providers" or “students” to the essential human beings who quietly shape the rhythm of the campus life every day. 
+We have tried to tell their stories to foster deeper and impactful conversations. 
+The objective is not sympathy. It is recognition via digital storytelling. 
+Hope you have a good time while reading this as much as we had making this. 
+    </p>
+    <div class="close-quote">"</div>
+    <div class="team-msg-sig">— Group 12, IIM Calcutta</div>
+  </div>
+</section>
 <!-- ═══════════════════════════════════════════════ PAGE 2 ═══ -->
 <section id="page2">
 
@@ -838,7 +910,7 @@ footer strong { color: var(--gold); font-weight: 400; }
 
         <div class="card-body">
           <div class="card-caption">
-            <strong>Hero - The Bureaucratic Liaison </strong>
+            <strong>The Bureaucratic Liaison </strong>
             <span class="excerpt" id="ex-h1">Sujit Malakar (Babu Da) is an office staff from Behala working in the MBAEx Office, having previously served as a Projector Operator. From his perspective, everyone on campus is simply a student. Observing changes over the last few years, he notes that while a strong bonding existed earlier, recent batches are not very into talking, likely due to an increased time crunch and pressure. He observes that some individuals interact from term 1 to term 4, but subsequently get busy with exams and placements, thereby reducing the interactions P.S. Next time you see him, ask him out for lunch to make his day.</span>
           </div>
           <button class="read-more" data-id="h1">more</button>
@@ -979,7 +1051,7 @@ footer strong { color: var(--gold); font-weight: 400; }
         <div class="card-body">
           <div class="card-caption">
             <strong>The Campus Retailer</strong>
-            <span class="excerpt" id="ex-h4">An introvert, he came to the campus 20 years back and previously worked as a Service Engineer for Nescafe Coffee Machines before becoming a Caffeine Conjuror & Carb Architect. While UPI has made his life easier compared to handling cash, student interaction remains low due to time crunches and short breaks. Students complain about wanting more food items, but limited space prevents menu expansion. P.S. He says Maggie 2 minute mein nahi banta and he wants world peace (particularly his peace during the break.). Net time you go to the coffee shop, be patient.</span>
+            <span class="excerpt" id="ex-h4">An introvert, he came to the campus 20 years back and previously worked as a Service Engineer for Nescafe Coffee Machines before becoming a Caffeine Conjuror & Carb Architect. While UPI has made his life easier compared to handling cash, student interaction remains low due to time crunches and short breaks. Students complain about wanting more food items, but limited space prevents menu expansion. P.S. He says Maggie 2 minute mein nahi banta and he wants world peace (particularly his peace during the break.). Next time you go to the coffee shop, be patient.</span>
           </div>
           <button class="read-more" data-id="h4">more</button>
           <div class="card-time">Interviewed · May 2026</div>
@@ -1055,7 +1127,7 @@ footer strong { color: var(--gold); font-weight: 400; }
         <div class="card-header">
           <div class="card-avatar"><div class="avatar-inner team-av">1</div></div>
           <div class="card-meta">
-            <div class="card-name">THe Hyper Focused Student</div>
+            <div class="card-name">The Hyper Focused Student</div>
             <!-- <div class="card-role">MBAEx56/20 · Group Lead</div> -->
           </div>
           <button class="card-more">···</button>
