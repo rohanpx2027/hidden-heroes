@@ -6,21 +6,15 @@
 <title>Hidden Heroes: The Invisible Backbone — IIM Calcutta</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  .card-photo {
+.card-photo img {
   width: 100%;
-  height: 500px;
-  overflow: hidden;
-  border-radius: 12px;
-  position: relative;        /* add this */
-}
-
-.profile-img {
-  width: 100%;
-  height: 500px;
+  height: 100%;
   object-fit: cover;
-  /* object-position: center top;  /* change this — crops from top, keeps faces visible */ */
+  object-position: center top;
   display: block;
+  transition: transform 0.4s ease;
 }
+  
 :root {
   --cream: #F5F0E8;
   --ink: #1a1a1a;
