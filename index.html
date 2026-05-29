@@ -64,7 +64,25 @@
   color: var(--gold);
   margin-top: 2.5rem;
 }
-  
+
+  .team-msg-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--gold);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.team-msg-heading::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: var(--gold);
+  margin: 12px auto 0;
+  opacity: 0.7;
+}
   .card-caption {
     text-align: justify;
 }
@@ -853,6 +871,7 @@ footer strong { color: var(--gold); font-weight: 400; }
 <!-- ═══════════════ TEAM MESSAGE SECTION ═══════════════ -->
 <section id="team-message">
   <div class="team-msg-inner">
+    <h2 class="team-msg-heading">A Message From Our Team</h2>
     <!-- <div class="open-quote">"</div> -->
     <p class="team-msg-text">
       To the one who chose to pause and read,
