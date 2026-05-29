@@ -8,16 +8,17 @@
 <style>
   .card-photo {
   width: 100%;
-  aspect-ratio: 4/3;
-  /* height: 320px; */
+  height: 320px;
   overflow: hidden;
   border-radius: 12px;
+  position: relative;        /* add this */
 }
 
 .profile-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;  /* change this — crops from top, keeps faces visible */
   display: block;
 }
 :root {
@@ -1051,7 +1052,7 @@ footer strong { color: var(--gold); font-weight: 400; }
       <!-- MEMBER 1 -->
       <div class="post-card reveal" id="card-m1">
         <div class="card-header">
-          <div class="card-avatar"><div class="avatar-inner team-av">RD</div></div>
+          <div class="card-avatar"><div class="avatar-inner team-av">1</div></div>
           <div class="card-meta">
             <div class="card-name">THe Hyper Focused Student</div>
             <!-- <div class="card-role">MBAEx56/20 · Group Lead</div> -->
@@ -1099,7 +1100,7 @@ footer strong { color: var(--gold); font-weight: 400; }
       <!-- MEMBER 2 -->
       <div class="post-card reveal" id="card-m2">
         <div class="card-header">
-          <div class="card-avatar"><div class="avatar-inner team-av">RP</div></div>
+          <div class="card-avatar"><div class="avatar-inner team-av">2</div></div>
           <div class="card-meta">
             <div class="card-name">The  Institutional Mediator</div>
             <!-- <div class="card-role">MBAEx57/20</div> -->
@@ -1142,7 +1143,7 @@ footer strong { color: var(--gold); font-weight: 400; }
       <!-- MEMBER 3 -->
       <div class="post-card reveal" id="card-m3">
         <div class="card-header">
-          <div class="card-avatar"><div class="avatar-inner team-av">RS</div></div>
+          <div class="card-avatar"><div class="avatar-inner team-av">3</div></div>
           <div class="card-meta">
             <div class="card-name">The  Human Connector</div>
             <!-- <div class="card-role">MBAEx58/20</div> -->
@@ -1185,7 +1186,7 @@ footer strong { color: var(--gold); font-weight: 400; }
       <!-- MEMBER 4 -->
       <div class="post-card reveal" id="card-m4">
         <div class="card-header">
-          <div class="card-avatar"><div class="avatar-inner team-av">SK</div></div>
+          <div class="card-avatar"><div class="avatar-inner team-av">4</div></div>
           <div class="card-meta">
             <div class="card-name">The  Long-Term Observer</div>
             <!-- <div class="card-role">MBAEx59/20</div> -->
@@ -1228,7 +1229,7 @@ footer strong { color: var(--gold); font-weight: 400; }
       <!-- MEMBER 5 -->
       <div class="post-card reveal" id="card-m5">
         <div class="card-header">
-          <div class="card-avatar"><div class="avatar-inner team-av">RH</div></div>
+          <div class="card-avatar"><div class="avatar-inner team-av">5</div></div>
           <div class="card-meta">
             <div class="card-name">The  Functional Survivor</div>
             <!-- <div class="card-role">MBAEx60/20</div> -->
